@@ -1,11 +1,11 @@
 require("dotenv").config({
-  path: `.env.${process.env.NODE_ENV}`,
+  path: `.env.${process.env.NODE_ENV || "development"}`,
 })
 Realm = require("realm-web")
 
 // Get a valid Realm user access token to authenticate requests
 async function getValidAccessToken() {
-  const app = new Realm.App(process.env.REALM_APP_ID)
+  const app = new Realm.App(process.env.GATSBY_REALM_APP_ID)
 
   if (!app.currentUser) {
     // If no user is logged in, log in an anonymous user
@@ -75,7 +75,7 @@ module.exports = {
       options: {
         typeName: "Frugal", // This is arbitrary, see https://github.com/gatsbyjs/gatsby/issues/18877.
         fieldName: "mongodbGqlApi", // This is arbitrary, see https://github.com/gatsbyjs/gatsby/issues/18877.
-        url: process.env.REALM_GQL_URL,
+        url: process.env.GATSBY_REALM_GQL_URL,
         // HTTP headers
         // headers: {
         //   // apiKey: process.env.REALM_GQL_URL,

@@ -48,13 +48,25 @@ const Layout = (props: LayoutProps) => {
     }
   `)
 
+  // const Layout = (props: LayoutProps) => {
+  //   const data = useStaticQuery(graphql`
+  //     query SiteTitleQuery {
+  //       mongodbGqlApi {
+  //         layout_a {
+  //           title
+  //         }
+  //       }
+  //     }
+  //   `)
+
   return (
     <>
       <header style={{ marginBottom: `1.5rem` }}>
         <Link to="/" style={{ textShadow: `none`, backgroundImage: `none` }}>
           <h3 style={{ display: `inline` }}>
             {/* {data.allMongodbBasicLayoutsLayoutA.edges[0].node?.title || `Title`} */}
-            {data.site.siteMetadata?.title || `Title`}
+            {data.site.siteMetadata.title || `Title`}
+            {/* {data.mongodbGqlApi.layout_a.title} */}
           </h3>
         </Link>
         <ul style={{ listStyle: `none`, float: `right` }}>

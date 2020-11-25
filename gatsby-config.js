@@ -71,26 +71,6 @@ module.exports = {
     // REALM_GQL_TOKEN=JkS4PbIuf1ELHnXEIAK4wKhWW9Q9AV80bNbyv8ZNhhq0dZghD9zRQyM0Nwvg4mFB
     // REALM_GQL_URL=https://us-east-1.aws.realm.mongodb.com/api/client/v2.0/app/application-frugal-zdrdn/graphql
     {
-      resolve: "gatsby-source-graphql",
-      options: {
-        typeName: "Frugal", // This is arbitrary, see https://github.com/gatsbyjs/gatsby/issues/18877.
-        fieldName: "mongodbGqlApi", // This is arbitrary, see https://github.com/gatsbyjs/gatsby/issues/18877.
-        url: process.env.GATSBY_REALM_GQL_URL,
-        // HTTP headers
-        // headers: {
-        //   // apiKey: process.env.REALM_GQL_URL,
-        //   Authorization: `apiKey ${process.env.REALM_GQL_API_KEY}`,
-
-        //   // Authorization: `Bearer ${process.env.REALM_GQL_TOKEN}`,
-        // },
-        headers: async () => {
-          return {
-            Authorization: await getAuthorizationToken(),
-          }
-        },
-      },
-    },
-    {
       resolve: `gatsby-plugin-typography`,
       options: {
         pathToConfigModule: `src/utils/typography`,
@@ -101,5 +81,36 @@ module.exports = {
     // The offline plugin should be listed after the manifest plugin so that the
     // offline plugin can cache the created manifest.webmanifest.
     `gatsby-plugin-offline`,
+    // {
+    //   resolve: `gatsby-source-graphql`,
+    //   options: {
+    //     typeName: "Frugal", // This is arbitrary, see https://github.com/gatsbyjs/gatsby/issues/18877.
+    //     fieldName: "mongodbGqlApi", // This is arbitrary, see https://github.com/gatsbyjs/gatsby/issues/18877.
+    //     url: process.env.GATSBY_REALM_GQL_URL,
+    //     // HTTP headers
+    //     // headers: {
+    //     //   // apiKey: process.env.REALM_GQL_URL,
+    //     //   Authorization: `apiKey ${process.env.REALM_GQL_API_KEY}`,
+
+    //     //   // Authorization: `Bearer ${process.env.REALM_GQL_TOKEN}`,
+    //     // },
+    //     headers: async () => {
+    //       return {
+    //         Authorization: await getAuthorizationToken(),
+    //       }
+    //     },
+    //   },
+    // },
+    {
+      resolve: "gatsby-source-graphql",
+      options: {
+        // Arbitrary name for the remote schema Query type
+        typeName: "SWAPI",
+        // Field under which the remote schema will be accessible. You'll use this in your Gatsby query
+        fieldName: "swapi",
+        // Url to query from
+        url: "https://swapi-graphql.netlify.app/.netlify/functions/index",
+      },
+    },
   ],
 }

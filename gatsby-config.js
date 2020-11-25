@@ -3,13 +3,12 @@ require("dotenv").config({
 })
 Realm = require("realm-web")
 
-const app = new Realm.App(process.env.REALM_APP_ID)
-
 // Get a valid Realm user access token to authenticate requests
-async function getValidAccessToken(app) {
+async function getValidAccessToken() {
+  const app = new Realm.App(process.env.REALM_APP_ID)
+
   if (!app.currentUser) {
     // If no user is logged in, log in an anonymous user
-
     await app.logIn(Realm.Credentials.anonymous())
   } else {
     // The logged in user's access token might be stale,
@@ -86,7 +85,7 @@ module.exports = {
         // },
         headers: async () => {
           return {
-            Authorization: await getAuthorizationToken(app),
+            Authorization: await getAuthorizationToken(),
           }
         },
       },

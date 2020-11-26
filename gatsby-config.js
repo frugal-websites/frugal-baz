@@ -3,6 +3,7 @@ require("dotenv").config({
 })
 Realm = require("realm-web")
 
+// https://docs.mongodb.com/realm/node/authenticate/#node-login-anonymous
 // Get a valid Realm user access token to authenticate requests
 async function getValidAccessToken() {
   console.log(2)
@@ -11,7 +12,14 @@ async function getValidAccessToken() {
   if (!app.currentUser) {
     console.log(4)
     // If no user is logged in, log in an anonymous user
-    await app.logIn(Realm.Credentials.anonymous())
+    try {
+      await app.logIn(Realm.Credentials.anonymous())
+      console.log("Successfully logged in!")
+    } catch (err) {
+      console.error("Failed to log in", err.message)
+      console.log("log Failed to log in log", err)
+    }
+
     console.log(5)
   } else {
     // The logged in user's access token might be stale,

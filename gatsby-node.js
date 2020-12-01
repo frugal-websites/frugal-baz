@@ -52,4 +52,14 @@ exports.createPages = async ({ graphql, actions }) => {
       },
     })
   })
+
+  createPage({
+    path: `mainPage`,
+    component: path.resolve(`./src/templates/MainPage.tsx`),
+    context: {
+      // Data passed to context is available
+      // in page queries as GraphQL variables.
+      _websiteId: parseInt(process.env.GATSBY_WEBSITE_ID),
+    },
+  })
 }

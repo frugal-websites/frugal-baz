@@ -48,16 +48,23 @@ const ListLink = (props: { to: string; children: string }) => (
 //     }
 //   `)
 
+// 1232132
+
 const Layout = (props: LayoutProps) => {
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      mongodbGqlApi {
-        layout_a {
-          title
-        }
-      }
-    }
-  `)
+  // let test = 1232132
+  // const data = useStaticQuery(graphql`
+  //   query SiteTitleQuery {
+  //     mongodbGqlApi {
+  //       layout_a(query: { websiteId: 1232132 }) {
+  //         layout {
+  //           title
+  //           description
+  //           isSecondDescription
+  //         }
+  //       }
+  //     }
+  //   }
+  // `)
 
   return (
     <>
@@ -66,7 +73,7 @@ const Layout = (props: LayoutProps) => {
           <h3 style={{ display: `inline` }}>
             {/* {data.allMongodbBasicLayoutsLayoutA.edges[0].node?.title || `Title`} */}
             {/* {data.site.siteMetadata.title || `Title`} */}
-            {data.mongodbGqlApi.layout_a.title}
+            {`Title`}
           </h3>
         </Link>
         <ul style={{ listStyle: `none`, float: `right` }}>
